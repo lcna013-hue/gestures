@@ -28,26 +28,19 @@ pinching_img = Image.open("pinch_gesutre_img.png")
 pinch_img = pinching_img.resize((300, 400))
 img = ImageTk.PhotoImage(pinch_img)
 
-
+# HOME title placed in the center 
 frame_title_home.place(anchor="n", relx=.5, rely=.025)
-title = tkinter.Label(frame_title_home, text="HOME", font=("Aptos", 40))
-
-#colour , fg="blue2
-
-#  box:  highlightthickness = 4, highlightbackground = "blue2"
-
+title = tkinter.Label(frame_title_home, text="HOME", font=("Aptos", 40), fg="blue2")
 title.pack()
 
 frame_fields.place(anchor="se", rely=.35, relx=.94)
 start_date_lbl = tkinter.Label(frame_fields, text="""To take a photo, make a pinching 
 gesutre with your hand, 
-like seen below ⬇""", font=("Aptos", 24))
-start_date_lbl.pack()
+like seen below ⬇""", font=("Aptos", 24), highlightthickness = 4, highlightbackground = "dodgerblue2")
+start_date_lbl.pack(ipadx=15, ipady=15)
 
 frame_text2.place(rely=.2, relx=.1)
 text_2_lbl = tkinter.Label(frame_text2, text="""                                                                
-
-
 
 
 
@@ -65,7 +58,7 @@ text_2_lbl.pack()
 
 label_img = Image
 
-label = Label(image=img)
+label = Label(image=img, highlightthickness = 4, highlightbackground = "limegreen")
 #label.pinching_img = img
 #Image posistions 
 label.place(anchor="e", relx=.9, rely=.7)
