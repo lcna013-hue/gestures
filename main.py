@@ -37,8 +37,6 @@ def open_camera():
     mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=opencv_image)
     recognizer.recognize_async(mp_image, time.time_ns()//1000)
 
-    captured_image = Image.fromarray(opencv_image)
-
     photo_image = ImageTk.PhotoImage(image=captured_image)
     label_widget.photo_image = photo_image
     label_widget.configure(image=photo_image)

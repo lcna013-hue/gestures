@@ -28,10 +28,8 @@ title.pack()
 
 #Text asking user if they would like to save the photo that will be displayed to the left of the text
 frame_save.place(relx=.6, rely=.20)
-photo_taken_img = tk.Label(frame_save, text="""If you wish to keep 
-this photo and move
-on, show a thumbs 
-upto the camera """, font=("Aptos", 24), highlightthickness = 4, highlightbackground = "limegreen")
+photo_taken_img = tk.Label(frame_save, text="""If you wish to keep \n this photo and move \n on, show a thumbs \n upto the camera """, 
+font=("Aptos", 24), highlightthickness = 4, highlightbackground = "limegreen")
 photo_taken_img.pack(ipadx=10, ipady=15)
 
 frame_or.place(relx=.68, rely=.50)
