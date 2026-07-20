@@ -63,8 +63,13 @@ def display_result(result: vision.GestureRecognizerResult, output_image: mp.Imag
         # print(gesture.name)
         
     if "victory" in name and count == 1:
+        count = 3
         screen_2_hide()
         screen_3_show()
+        
+    if "thumb" in name and "up" in name and count == 3:
+        screen_3_hide()
+
 
 
 
@@ -90,6 +95,7 @@ def open_camera():
     label_widget.photo_image = photo_image
     label_widget.configure(image=photo_image)
     label_widget.after(10, open_camera)
+
 
 def screen_1_show():
     title.pack()
@@ -118,6 +124,19 @@ def screen_2_hide():
 
 
 def screen_3_show():
+    title_quantity.pack()
+    book_num.pack(ipadx=80, ipady=30)
+    num_fingers.pack(ipadx=15, ipady=15)
+
+def screen_3_hide():
+    frame_title_quantity.place_forget()
+    frame_how_many.place_forget()
+    frame_num_fingers.place_forget()
+    frame_hand_key_img.place_forget()
+
+
+
+def screen_4_show():
     title_book_saved.pack()
     add_lbl.pack(ipadx=10, ipady=30)
     error_lbl.pack(ipadx=15, ipady=12)
@@ -222,8 +241,57 @@ label_img = Image
 # END OF PHOTO GUI (screen 2)
 # ******************************************
 
+
+
 # ******************************************
 # START OF PHOTO GUI (screen 3)
+# ******************************************
+frame_title_quantity = tk.Frame(root)
+frame_how_many = tk.Frame(root)
+frame_num_fingers = tk.Frame(root)
+frame_hand_key_img = tk.Frame(root)
+
+
+
+frame_title_quantity.place(anchor="n", relx=.5, rely=.025)
+title_quantity = tk.Label(frame_title_quantity, 
+text="ADD QUANTITY", 
+font=("Aptos", 40), 
+fg="blue2")
+
+
+frame_how_many.place(relx=.5, rely=.2)
+book_num = tk.Label(frame_how_many, 
+font=("Aptos", 24), text="How many books are there?", 
+highlightthickness=4, highlightbackground="dodgerblue2")
+
+
+frame_num_fingers.place(anchor="n", relx=.7, rely=.4)
+num_fingers = tk.Label(frame_num_fingers, 
+font=("Aptos", 24), 
+text="Have the back of \n your hands facing \n the camera, then hold \n up the number of fingers \n for how many  of \n these books there are.",
+highlightthickness=4, highlightbackground="dodgerblue2")
+
+
+# Uncomment when image file is added
+# frame_hand_key_img.place(anchor="n", relx=.5, rely=.6)
+
+
+
+
+
+
+
+# ******************************************
+# END OF PHOTO GUI (screen 3)
+# ******************************************
+
+
+
+
+
+# ******************************************
+# START OF PHOTO GUI (screen 4)
 # ******************************************
 
 frame_title = tk.Frame(root)
@@ -258,6 +326,16 @@ hand_img=tk.Label(frame_hand_img, highlightthickness=4, highlightbackground="dod
 
 frame_book_img.place(relx=.04, rely=.2)
 book_photo=tk.Label(frame_book_img, highlightthickness=4, highlightbackground="dodgerblue2", text="***ADD IMAGE HERE***")
+
+
+
+
+
+
+
+
+
+
 
 
 open_camera()

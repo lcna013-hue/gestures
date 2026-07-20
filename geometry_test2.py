@@ -51,8 +51,6 @@ text_2_lbl = tkinter.Label(frame_text2, text="""
 
 
 
-
-
 """, font=("Aptos", 20), highlightthickness = 4, highlightbackground = "black")
 text_2_lbl.pack()
 

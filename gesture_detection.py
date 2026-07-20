@@ -29,12 +29,21 @@ vid.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
 def display_result(
     result: vision.GestureRecognizerResult, output_image: mp.Image, timestamp_ms: int
 ):
-    print(result.gestures)
+
+    gesture = result.gestures[0][0]
+
+    print(gesture.category_name)
+    name = gesture.category_name.strip().lower()
+
+    if "thumb" in name and "up" in name:
+        print("*" * 80)
+
+
+            
+    #print(result.gestures)
     image = Image.fromarray(output_image.numpy_view())
     image.save("file.jpg")
-  
-        
-
+   
 
 
 base_options = python.BaseOptions(model_asset_path="gesture_recognizer.task")
@@ -112,3 +121,4 @@ label_widget.place(rely=.2, relx=.1)
 open_camera()
 
 root.mainloop()
+

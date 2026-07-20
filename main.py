@@ -1,4 +1,4 @@
-from tkinter import Tk, Label, Button
+from tkinter import Tk, Label
 from PIL import Image, ImageTk
 
 import cv2
