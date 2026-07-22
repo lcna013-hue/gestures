@@ -7,9 +7,9 @@ import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 
-# ==========================================
+#***************************
 # MediaPipe Tasks HandLandmarker Setup
-# ==========================================
+#***************************
 
 MODEL_PATH = "hand_landmarker.task"
 
@@ -29,9 +29,9 @@ options = vision.HandLandmarkerOptions(
 hand_landmarker = vision.HandLandmarker.create_from_options(options)
 
 
-# ==========================================
+#***************************
 # Hand Landmark Connections
-# ==========================================
+#***************************
 
 HAND_CONNECTIONS = [
     (0,1),(1,2),(2,3),(3,4),          # Thumb
@@ -41,10 +41,9 @@ HAND_CONNECTIONS = [
     (13,17),(17,18),(18,19),(19,20),  # Pinky
     (0,17)
 ]
-
-# ==========================================
+#***************************
 # Landmark Indexes
-# ==========================================
+#***************************
 
 finger_tips = [8, 12, 16, 20]
 finger_pips = [6, 10, 14, 18]
@@ -54,9 +53,9 @@ thumb_mcp = 2
 
 wrist = 0
 
-# ==========================================
+#***************************
 # Utility Functions
-# ==========================================
+#***************************
 
 def calculate_distance(point1, point2):
     """
@@ -108,9 +107,9 @@ def draw_hand(frame, landmarks):
             -1
         )
 
-# ==========================================
+#***************************
 # Open Webcam
-# ==========================================
+#***************************
 
 cap = cv2.VideoCapture(0)
 
@@ -118,9 +117,9 @@ if not cap.isOpened():
     print("Error: Could not open webcam")
     exit()
 
-# ==========================================
+#***************************
 # Main Loop
-# ==========================================
+#***************************
 
 while cap.isOpened():
 
@@ -159,9 +158,9 @@ while cap.isOpened():
     left_wrist_state = "Unknown"
     right_wrist_state = "Unknown"
 
-    # ======================================
+    #***************************
     # Process detected hands
-    # ======================================
+    #***************************
 
     if results.hand_landmarks:
 
@@ -178,9 +177,9 @@ while cap.isOpened():
 
             # Draw hand skeleton
             draw_hand(frame, landmarks)
-            # ==================================
+            #***************************
             # Finger counting
-            # ==================================
+            #***************************
 
             finger_count = 0
 
@@ -213,9 +212,9 @@ while cap.isOpened():
                 if landmarks[tip].y < landmarks[pip].y:
                     finger_count += 1
 
-            # ==================================
+            #***************************
             # Open / Closed Hand Detection
-            # ==================================
+            #***************************
 
             total_distance = 0
 
@@ -275,13 +274,13 @@ while cap.isOpened():
 
 
 
-    # ======================================
+    #***************************
     # Display Results
-    # ======================================
-
+    #***************************
+    total_count = left_finger_count + right_finger_count
     cv2.putText(
         frame,
-        f"Left Hand - Fingers: {left_finger_count}, Wrist: {left_wrist_state}",
+        f"Total Book:{total_count}",
         (10, 35),
         cv2.FONT_HERSHEY_SIMPLEX,
         0.7,
@@ -289,21 +288,13 @@ while cap.isOpened():
         2
     )
 
+    
 
-    cv2.putText(
-        frame,
-        f"Right Hand - Fingers: {right_finger_count}, Wrist: {right_wrist_state}",
-        (10, 70),
-        cv2.FONT_HERSHEY_SIMPLEX,
-        0.7,
-        (0,255,0),
-        2
-    )
     window_name = "MediaPipe Tasks Hand Tracking"
 
-    # ======================================
+    #***************************
     # Show Camera Feed
-    # ======================================
+    #***************************
 
     cv2.imshow(
         "MediaPipe Tasks Hand Tracking",
@@ -318,7 +309,6 @@ while cap.isOpened():
 
     if cv2.getWindowProperty(window_name, cv2.WND_PROP_VISIBLE) < 1:
         break
-
 
 
 cap.release()
